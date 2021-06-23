@@ -14,7 +14,7 @@ router.post("/", async (req, res, next) => {
     let conversation = await Conversation.findConversationById(conversationId);
 
     // if we already know conversation id, we can save time and just add it to message and return
-    if (conversationId) {
+    if (conversation) {
       const { dataValues } = conversation;
       const convoUsers = [dataValues.user1Id, dataValues.user2Id];
       if(convoUsers.includes(senderId) && convoUsers.includes(recipientId)){
