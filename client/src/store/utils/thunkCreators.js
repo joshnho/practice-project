@@ -49,7 +49,7 @@ export const login = (credentials) => async (dispatch) => {
 
 export const logout = (id) => async (dispatch) => {
   try {
-    await axios.get("/auth/logout");
+    await axios.delete("/auth/logout");
     dispatch(gotUser({}));
     socket.emit("logout", id);
   } catch (error) {
