@@ -14,7 +14,6 @@ router.post("/", async (req, res, next) => {
     let conversation = await Conversation.findByPk(conversationId);
 
     if (conversation) {
-      console.log(conversation)
       const { dataValues } = conversation;
       const convoUsers = [dataValues.user1Id, dataValues.user2Id];
       // check if current sender is part of conversation
