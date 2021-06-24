@@ -14,7 +14,7 @@ const Messages = ({ messages, otherUser, userId }) => {
         ) : (
           <OtherUserBubble key={message.id} text={message.text} time={time} otherUser={otherUser} />
         );
-      }).reverse()}
+      })}
     </Box>
   );
 };
