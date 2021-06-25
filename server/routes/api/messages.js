@@ -18,7 +18,12 @@ router.post("/", async (req, res, next) => {
       const convoUsers = [dataValues.user1Id, dataValues.user2Id];
       // check if current sender is part of conversation
       if(convoUsers.includes(senderId) && convoUsers.includes(recipientId)){
-        const message = await Message.create({ senderId, text, conversationId });
+        const message = await Message.create({
+          senderId,
+          text,
+          conversationId,
+          read: false
+        });
         return res.json({ message, sender });
       } else {
         return res.sendStatus(401);
@@ -38,6 +43,7 @@ router.post("/", async (req, res, next) => {
       senderId,
       text,
       conversationId: conversation.id,
+      read: false
     });
     res.json({ message, sender });
   } catch (error) {
