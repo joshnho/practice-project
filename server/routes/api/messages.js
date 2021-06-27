@@ -67,6 +67,9 @@ router.post("/read", async (req, res, next) => {
         },
         senderId: {
           [Op.eq]: senderId
+        },
+        read: {
+          [Op.eq]: false
         }
       }}
     )
