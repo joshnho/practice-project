@@ -42,7 +42,6 @@ const Chat = (props) => {
 
   return (
     <Box onClick={() => handleClick(conversation)} className={classes.root}>
-      {console.log(props)}
       <BadgeAvatar
         photoUrl={conversation.otherUser.photoUrl}
         username={conversation.otherUser.username}
