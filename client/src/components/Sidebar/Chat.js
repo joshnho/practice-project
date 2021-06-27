@@ -30,6 +30,7 @@ const Chat = (props) => {
 
   const handleClick = async (conversation) => {
     await props.setActiveChat(conversation.otherUser.username);
+    setUnreadCount(0)
   };
   const { classes, conversation } = props;
 
