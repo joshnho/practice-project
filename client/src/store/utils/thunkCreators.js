@@ -114,7 +114,7 @@ export const updateReadStatus = (body) => async (dispatch) => {
       conversationId: body.id,
       senderId: body.otherUser.id
     }
-    const { data } = await axios.post("/api/messages/read", reqBody)
+    await axios.post("/api/messages/read", reqBody)
   } catch (error) {
     console.error(error)
   }
