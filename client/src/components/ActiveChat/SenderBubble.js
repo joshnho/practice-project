@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "flex-end"
   },
-  date: {
+  msgDetails: {
     fontSize: 11,
     color: "#BECCE2",
     fontWeight: "bold",
@@ -32,10 +32,11 @@ const SenderBubble = (props) => {
   const { time, message } = props;
   return (
     <Box className={classes.root}>
-      <Typography className={classes.date}>{message.read && 'read'} {time}</Typography>
+      <Typography className={classes.msgDetails}>{time}</Typography>
       <Box className={classes.bubble}>
         <Typography className={classes.text}>{message.text}</Typography>
       </Box>
+      <Typography className={classes.msgDetails}>{message.read && 'read'}</Typography>
     </Box>
   );
 };

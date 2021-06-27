@@ -107,3 +107,15 @@ export const searchUsers = (searchTerm) => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const updateReadStatus = (body) => async (dispatch) => {
+  try {
+    const reqBody = {
+      conversationId: body.id,
+      senderId: body.otherUser.id
+    }
+    const { data } = await axios.post("/api/messages/read", reqBody)
+  } catch (error) {
+    console.error(error)
+  }
+}
