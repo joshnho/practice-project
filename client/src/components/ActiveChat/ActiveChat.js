@@ -21,15 +21,14 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const ActiveChat = (props) => {
+const ActiveChat = ({ user, conversation, updateReadStatus }) => {
   const classes = useStyles();
-  const { user, conversation } = props;
 
   useEffect(() => {
     if(conversation){
-      props.updateReadStatus(conversation);
+      updateReadStatus(conversation);
     }
-  }, [props, conversation])
+  }, [updateReadStatus, conversation])
 
   return (
     <Box className={classes.root}>

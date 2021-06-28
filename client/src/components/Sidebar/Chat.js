@@ -25,14 +25,13 @@ const styles = {
   },
 };
 
-const Chat = (props) => {
+const Chat = ({ setActiveChat, classes, conversation }) => {
   const [unreadCount, setUnreadCount] = useState(0);
 
   const handleClick = async (conversation) => {
-    await props.setActiveChat(conversation.otherUser.username);
+    await setActiveChat(conversation.otherUser.username);
     setUnreadCount(0)
   };
-  const { classes, conversation } = props;
 
   useEffect(() => {
     const unreadMsgs = conversation.messages.filter((message) => {
@@ -49,7 +48,7 @@ const Chat = (props) => {
         online={conversation.otherUser.online}
         sidebar={true}
       />
-      <ChatContent conversation={props.conversation} />
+      <ChatContent hasUnreadMsgs={unreadCount > 0} conversation={conversation} />
       {unreadCount > 0 && (
         <Chip label={unreadCount} className={classes.unreadCount} />
       )}

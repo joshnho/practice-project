@@ -53,7 +53,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // Set messages in current conversation to read
-router.post("/read", async (req, res, next) => {
+router.patch("/unread-messages", async (req, res, next) => {
   try {
     if (!req.user) {
       return res.sendStatus(401)
