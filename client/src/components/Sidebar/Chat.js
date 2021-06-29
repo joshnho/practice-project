@@ -42,7 +42,7 @@ const Chat = ({ setActiveChat, classes, conversation, user }) => {
     setUnreadCount(conversation.messages.filter((message) => {
       return message.senderId === conversation.otherUser.id && message.read === false;
     }).length);
-  }, [conversation.messages, conversation.otherUser]);
+  }, [conversation]);
 
   return (
     <Box onClick={() => handleClick(conversation)} className={classes.root}>
