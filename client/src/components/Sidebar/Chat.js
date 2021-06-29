@@ -5,7 +5,6 @@ import { BadgeAvatar, ChatContent } from "../Sidebar";
 import { withStyles } from "@material-ui/core/styles";
 import { setActiveChat } from "../../store/activeConversation";
 import { connect } from "react-redux";
-import socket from "../../socket";
 
 const styles = {
   root: {
@@ -26,16 +25,12 @@ const styles = {
   },
 };
 
-const Chat = ({ setActiveChat, classes, conversation, user }) => {
+const Chat = ({ setActiveChat, classes, conversation }) => {
   const [unreadCount, setUnreadCount] = useState(0);
 
   const handleClick = async (conversation) => {
     await setActiveChat(conversation.otherUser.username);
-    socket.emit("read-messages", {
-      conversationId: conversation.id,
-      userId: user.id
-    })
-    setUnreadCount(0)
+    setUnreadCount(0);
   };
 
   useEffect(() => {
@@ -63,8 +58,8 @@ const Chat = ({ setActiveChat, classes, conversation, user }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
