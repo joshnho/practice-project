@@ -5,6 +5,7 @@ import { BadgeAvatar, ChatContent } from "../Sidebar";
 import { withStyles } from "@material-ui/core/styles";
 import { setActiveChat } from "../../store/activeConversation";
 import { connect } from "react-redux";
+import socket from "../../socket";
 
 const styles = {
   root: {
@@ -25,20 +26,23 @@ const styles = {
   },
 };
 
-const Chat = ({ setActiveChat, classes, conversation }) => {
+const Chat = ({ setActiveChat, classes, conversation, user }) => {
   const [unreadCount, setUnreadCount] = useState(0);
 
   const handleClick = async (conversation) => {
     await setActiveChat(conversation.otherUser.username);
+    socket.emit("read-messages", {
+      conversationId: conversation.id,
+      userId: user.id
+    })
     setUnreadCount(0)
   };
 
   useEffect(() => {
-    const unreadMsgs = conversation.messages.filter((message) => {
+    setUnreadCount(conversation.messages.filter((message) => {
       return message.senderId === conversation.otherUser.id && message.read === false;
-    });
-    setUnreadCount(unreadMsgs.length);
-  }, [conversation]);
+    }).length);
+  }, [conversation.messages, conversation.otherUser]);
 
   return (
     <Box onClick={() => handleClick(conversation)} className={classes.root}>
@@ -56,6 +60,12 @@ const Chat = ({ setActiveChat, classes, conversation }) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     setActiveChat: (id) => {
@@ -64,4 +74,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Chat));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Chat));
