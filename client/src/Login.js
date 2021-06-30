@@ -11,9 +11,8 @@ import {
 } from "@material-ui/core";
 import { login } from "./store/utils/thunkCreators";
 
-const Login = (props) => {
+const Login = ({ user, login }) => {
   const history = useHistory();
-  const { user, login } = props;
 
   const handleLogin = async (event) => {
     event.preventDefault();

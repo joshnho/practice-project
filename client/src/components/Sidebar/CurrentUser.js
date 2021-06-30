@@ -32,10 +32,8 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const CurrentUser = (props) => {
+const CurrentUser = ({ user = {} }) => {
   const classes = useStyles();
-
-  const user = props.user || {};
 
   return (
     <Box className={classes.root}>

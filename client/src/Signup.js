@@ -12,9 +12,8 @@ import {
 } from "@material-ui/core";
 import { register } from "./store/utils/thunkCreators";
 
-const Login = (props) => {
+const Login = ({ user, register }) => {
   const history = useHistory();
-  const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
   const handleRegister = async (event) => {

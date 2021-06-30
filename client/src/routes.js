@@ -6,8 +6,7 @@ import Signup from "./Signup.js";
 import Login from "./Login.js";
 import { Home, SnackbarError } from "./components";
 
-const Routes = (props) => {
-  const { user, fetchUser } = props;
+const Routes = ({ user, fetchUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
@@ -27,7 +26,7 @@ const Routes = (props) => {
     }
   }, [user.error]);
 
-  if (props.user.isFetchingUser) {
+  if (user.isFetchingUser) {
     return <div>Loading...</div>;
   }
 
@@ -46,7 +45,7 @@ const Routes = (props) => {
         <Route
           exact
           path="/"
-          render={(props) => (props.user?.id ? <Home /> : <Signup />)}
+          render={(props) => (user?.id ? <Home /> : <Signup />)}
         />
         <Route path="/home" component={Home} />
       </Switch>
