@@ -33,7 +33,6 @@ const Chat = ({ setActiveChat, classes, conversation, user, readMessages }) => {
   const handleClick = async (conversation) => {
     await setActiveChat(conversation.otherUser.username);
     await readMessages(conversation.id, user.id)
-    setUnreadCount(0);
   };
 
   useEffect(() => {
