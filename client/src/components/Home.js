@@ -62,7 +62,6 @@ const Home = ({ classes, user, fetchConversations, logout }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    conversations: state.conversations,
   };
 };
 
