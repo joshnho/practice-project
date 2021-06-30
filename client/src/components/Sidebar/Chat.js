@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@material-ui/core";
+import Chip from "@material-ui/core/Chip";
 import { BadgeAvatar, ChatContent } from "../Sidebar";
 import { withStyles } from "@material-ui/core/styles";
 import { setActiveChat } from "../../store/activeConversation";
@@ -17,32 +18,48 @@ const styles = {
       cursor: "grab",
     },
   },
+  unreadCount: {
+    fontWeight: "semibold",
+    color: "#FFFFFF",
+    backgroundColor: "#3A8DFF",
+  },
 };
 
-class Chat extends Component {
-  handleClick = async (conversation) => {
-    await this.props.setActiveChat(conversation.otherUser.username);
+const Chat = ({ setActiveChat, classes, conversation }) => {
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  const handleClick = async (conversation) => {
+    await setActiveChat(conversation.otherUser.username);
+    setUnreadCount(0);
   };
 
-  render() {
-    const { classes } = this.props;
-    const otherUser = this.props.conversation.otherUser;
-    return (
-      <Box
-        onClick={() => this.handleClick(this.props.conversation)}
-        className={classes.root}
-      >
-        <BadgeAvatar
-          photoUrl={otherUser.photoUrl}
-          username={otherUser.username}
-          online={otherUser.online}
-          sidebar={true}
-        />
-        <ChatContent conversation={this.props.conversation} />
-      </Box>
-    );
-  }
-}
+  useEffect(() => {
+    setUnreadCount(conversation.messages.filter((message) => {
+      return message.senderId === conversation.otherUser.id && message.read === false;
+    }).length);
+  }, [conversation]);
+
+  return (
+    <Box onClick={() => handleClick(conversation)} className={classes.root}>
+      <BadgeAvatar
+        photoUrl={conversation.otherUser.photoUrl}
+        username={conversation.otherUser.username}
+        online={conversation.otherUser.online}
+        sidebar={true}
+      />
+      <ChatContent hasUnreadMsgs={unreadCount > 0} conversation={conversation} />
+      {unreadCount > 0 && (
+        <Chip label={unreadCount} className={classes.unreadCount} />
+      )}
+    </Box>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -52,4 +69,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Chat));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Chat));
