@@ -27,11 +27,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginTop: theme.spacing(25),
     marginBottom: theme.spacing(25),
-    marginLeft: theme.spacing(24),
-    marginRight: theme.spacing(24),
+    // marginLeft: theme.spacing(14),
+    // marginRight: theme.spacing(14),
     display: "flex",
     flexDirection: "column",
     gap: "60px",
+    width: "50%"
   },
   bubbleIcon: {
     width: "30%",
@@ -87,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
     height: "4em",
     fontSize: theme.typography.button.fontSize,
     marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(4),
   },
 }));
 
