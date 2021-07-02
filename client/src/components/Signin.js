@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     display: "flex",
     justifyContent: "flex-end",
+    alignItems: "center",
     marginTop: theme.spacing(5),
     marginLeft: theme.spacing(5),
     marginRight: theme.spacing(8),
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headerText: {
     color: theme.palette.secondary.main,
-    marginRight: theme.spacing(5),
+    marginRight: theme.spacing(2),
   },
   headerButton: {
     backgroundColor: "white",
