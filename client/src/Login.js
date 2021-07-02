@@ -36,6 +36,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "flex-end",
     marginTop: "10px",
+    marginLeft: "10px",
     paddingRight: "70px",
   },
   headerText: {
