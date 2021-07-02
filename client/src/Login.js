@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { theme } from "../src/themes/theme.js";
 import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -14,6 +13,7 @@ import {
 } from "@material-ui/core";
 import { login } from "./store/utils/thunkCreators";
 import bgImg from "./static/images/bg-img.png";
+import ChatBubbleImg from "./static/images/bubble.png";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,6 +25,22 @@ const useStyles = makeStyles(() => ({
     url(${bgImg})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
+    display: "flex",
+    justifyContent: "center",
+  },
+  imageTextContainer: {
+    color: "#FFFFFF",
+    textAlign: "center",
+    width: "50%",
+    margin: "35% 0% 35% 0%",
+    paddingRight: "20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "60px",
+  },
+  bubbleIcon: {
+    width: "30%",
+    alignSelf: "center"
   },
   paper: {
     display: "flex",
@@ -82,7 +98,7 @@ const useStyles = makeStyles(() => ({
 
 const Login = (props) => {
   const history = useHistory();
-  const classes = useStyles(theme);
+  const classes = useStyles();
   const { user, login } = props;
 
   const handleLogin = async (event) => {
@@ -99,7 +115,14 @@ const Login = (props) => {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={false} sm={4} md={5} className={classes.image} />
+      <Grid item xs={false} sm={4} md={5} className={classes.image}>
+        <Box className={classes.imageTextContainer}>
+          <img src={ChatBubbleImg} alt='chat-bubble' className={classes.bubbleIcon}/>
+          <Typography variant='h4'>
+            Converse with anyone with any language
+          </Typography>
+        </Box>
+      </Grid>
       <Grid item xs={12} sm={8} md={7} component={Paper} elevation={6}>
         <div className={classes.paper}>
           <Box className={classes.header}>

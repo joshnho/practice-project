@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import { register } from "./store/utils/thunkCreators";
 import bgImg from "./static/images/bg-img.png";
+import ChatBubbleImg from "./static/images/bubble.png"
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,6 +26,22 @@ const useStyles = makeStyles(() => ({
     url(${bgImg})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
+    display: "flex",
+    justifyContent: "center",
+  },
+  imageTextContainer: {
+    color: "#FFFFFF",
+    textAlign: "center",
+    width: "50%",
+    margin: "35% 0% 35% 0%",
+    paddingRight: "20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "60px",
+  },
+  bubbleIcon: {
+    width: "30%",
+    alignSelf: "center"
   },
   paper: {
     display: "flex",
@@ -102,12 +119,19 @@ const Signup = (props) => {
   };
 
   if (user.id) {
-    return <Redirect to='/home' />;
+    return <Redirect to="/home" />;
   }
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={false} sm={4} md={5} className={classes.image} />
+      <Grid item xs={false} sm={4} md={5} className={classes.image}>
+        <Box className={classes.imageTextContainer}>
+          <img src={ChatBubbleImg} alt="chat-bubble" className={classes.bubbleIcon}/>
+          <Typography variant="h4">
+            Converse with anyone with any language
+          </Typography>
+        </Box>
+      </Grid>
       <Grid item xs={12} sm={8} md={7} component={Paper} elevation={6}>
         <div className={classes.paper}>
           <Box className={classes.header}>
@@ -115,7 +139,7 @@ const Signup = (props) => {
               Already have an account?
             </Typography>
             <Button
-              variant='contained'
+              variant="contained"
               className={classes.headerButton}
               onClick={() => history.push("/login")}
             >
@@ -123,21 +147,20 @@ const Signup = (props) => {
             </Button>
           </Box>
           <form onSubmit={handleRegister} className={classes.formContainer}>
-            <Box fontSize='h3.fontSize' fontWeight='bold'>
+            <Box fontSize="h3.fontSize" fontWeight="bold">
               Create an account
             </Box>
-            {/* </h3> */}
             <Grid className={classes.form}>
               <FormControl
-                margin='normal'
+                margin="normal"
                 className={classes.textFields}
                 required
               >
                 <TextField
-                  aria-label='username'
-                  label='Username'
-                  name='username'
-                  type='text'
+                  aria-label="username"
+                  label="Username"
+                  name="username"
+                  type="text"
                   InputProps={{
                     classes: {
                       input: classes.textFields,
@@ -147,15 +170,15 @@ const Signup = (props) => {
                 />
               </FormControl>
               <FormControl
-                margin='normal'
+                margin="normal"
                 className={classes.textFields}
                 required
               >
                 <TextField
-                  label='E-mail address'
-                  aria-label='e-mail address'
-                  type='email'
-                  name='email'
+                  label="E-mail address"
+                  aria-label="e-mail address"
+                  type="email"
+                  name="email"
                   InputProps={{
                     classes: {
                       input: classes.textFields,
@@ -165,17 +188,17 @@ const Signup = (props) => {
                 />
               </FormControl>
               <FormControl
-                margin='normal'
+                margin="normal"
                 error={!!formErrorMessage.confirmPassword}
                 className={classes.textFields}
                 required
               >
                 <TextField
-                  aria-label='password'
-                  label='Password'
-                  type='password'
+                  aria-label="password"
+                  label="Password"
+                  type="password"
                   inputProps={{ minLength: 6 }}
-                  name='password'
+                  name="password"
                   InputProps={{
                     classes: {
                       input: classes.textFields,
@@ -188,17 +211,17 @@ const Signup = (props) => {
                 </FormHelperText>
               </FormControl>
               <FormControl
-                margin='normal'
+                margin="normal"
                 error={!!formErrorMessage.confirmPassword}
                 className={classes.textFields}
                 required
               >
                 <TextField
-                  label='Confirm Password'
-                  aria-label='confirm password'
-                  type='password'
+                  label="Confirm Password"
+                  aria-label="confirm password"
+                  type="password"
                   inputProps={{ minLength: 6 }}
-                  name='confirmPassword'
+                  name="confirmPassword"
                   InputProps={{
                     classes: {
                       input: classes.textFields,
@@ -212,10 +235,10 @@ const Signup = (props) => {
               </FormControl>
               <Button
                 className={classes.submitButton}
-                color='primary'
-                type='submit'
-                variant='contained'
-                size='large'
+                color="primary"
+                type="submit"
+                variant="contained"
+                size="large"
               >
                 Create
               </Button>
