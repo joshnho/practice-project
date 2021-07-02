@@ -10,7 +10,7 @@ import {
   Button,
   FormControl,
   TextField,
-  Paper
+  Paper,
 } from "@material-ui/core";
 import { login } from "./store/utils/thunkCreators";
 import bgImg from "./static/images/bg-img.png";
@@ -26,22 +26,9 @@ const useStyles = makeStyles(() => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   },
-
-
-  // imageTextContainer: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  // },
-  // imageText: {
-  //   color: "white",
-  //   fontSize: "40px",
-  //   width: "70%",
-  //   textAlign: "center",
-  // },
-
   paper: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   header: {
     display: "flex",
@@ -53,7 +40,7 @@ const useStyles = makeStyles(() => ({
   },
   headerText: {
     color: "rgba(180, 180, 180, 1)",
-    marginRight: "50px",
+    marginRight: "20px",
   },
   headerButton: {
     backgroundColor: "white",
@@ -129,57 +116,57 @@ const Login = (props) => {
             </Button>
           </Box>
           <form onSubmit={handleLogin} className={classes.formContainer}>
-          <Typography className={classes.formTitle}>
-            <Box fontSize='h3.fontSize' fontWeight='bold'>
-              Welcome back!
-            </Box>
-          </Typography>
-          <Grid className={classes.form}>
-            <FormControl
-              margin='normal'
-              className={classes.textFields}
-              required
-            >
-              <TextField
-                aria-label='username'
-                label='Username'
-                name='username'
-                type='text'
-                InputProps={{
-                  classes: {
-                    input: classes.textFields,
-                  },
-                }}
-              />
-            </FormControl>
-            <FormControl
-              margin='normal'
-              className={classes.textFields}
-              required
-            >
-              <TextField
-                label='Password'
-                aria-label='password'
-                type='password'
-                name='password'
-                InputProps={{
-                  classes: {
-                    input: classes.textFields,
-                  },
-                }}
-              />
-            </FormControl>
-            <Button
-              className={classes.submitButton}
-              color='primary'
-              type='submit'
-              variant='contained'
-              size='large'
-            >
-              Login
-            </Button>
-          </Grid>
-        </form>
+            <Typography className={classes.formTitle}>
+              <Box fontSize='h3.fontSize' fontWeight='bold'>
+                Welcome back!
+              </Box>
+            </Typography>
+            <Grid className={classes.form}>
+              <FormControl
+                margin='normal'
+                className={classes.textFields}
+                required
+              >
+                <TextField
+                  aria-label='username'
+                  label='Username'
+                  name='username'
+                  type='text'
+                  InputProps={{
+                    classes: {
+                      input: classes.textFields,
+                    },
+                  }}
+                />
+              </FormControl>
+              <FormControl
+                margin='normal'
+                className={classes.textFields}
+                required
+              >
+                <TextField
+                  label='Password'
+                  aria-label='password'
+                  type='password'
+                  name='password'
+                  InputProps={{
+                    classes: {
+                      input: classes.textFields,
+                    },
+                  }}
+                />
+              </FormControl>
+              <Button
+                className={classes.submitButton}
+                color='primary'
+                type='submit'
+                variant='contained'
+                size='large'
+              >
+                Login
+              </Button>
+            </Grid>
+          </form>
         </div>
       </Grid>
     </Grid>
