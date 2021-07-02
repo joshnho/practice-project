@@ -107,7 +107,6 @@ const Login = (props) => {
           <Typography className={classes.headerText}>Don't have an account?</Typography>
           <Button variant="contained" className={classes.headerButton} onClick={() => history.push("/register")}>Create Account</Button>
         </Grid>
-        {/* <Box className={classes.formContainer}> */}
           <form onSubmit={handleLogin} className={classes.formContainer} >
             <Typography className={classes.formTitle}>
               <Box fontSize="h3.fontSize" fontWeight="bold">
@@ -146,7 +145,6 @@ const Login = (props) => {
               </Button>
             </Grid>
           </form>
-        {/* </Box> */}
       </Box>
     </Grid>
   );
