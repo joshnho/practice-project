@@ -4,10 +4,14 @@ export const theme = createMuiTheme({
   typography: {
     fontFamily: "Open Sans, sans-serif",
     fontSize: 14,
+    textFields: {
+      fontSize: 25
+    },
     button: {
       textTransform: "none",
       letterSpacing: 0,
-      fontWeight: "bold"
+      fontWeight: "bold",
+      fontSize: "18px",
     }
   },
   overrides: {
@@ -19,6 +23,10 @@ export const theme = createMuiTheme({
   },
   palette: {
     primary: { main: "#3A8DFF" },
-    secondary: { main: "#B0B0B0" }
+    secondary: {
+      main: "#B0B0B0",
+      white: "#FFFFFF",
+      gradient: "#86B9FF",
+    }
   }
 });
