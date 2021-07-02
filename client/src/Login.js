@@ -73,6 +73,7 @@ const useStyles = makeStyles(() => ({
   },
   textFields: {
     width: "75%",
+    fontSize: "25px"
   },
   submitButton: {
     width: "7em",
@@ -120,6 +121,11 @@ const Login = (props) => {
                   label="Username"
                   name="username"
                   type="text"
+                  InputProps={{
+                    classes: {
+                      input: classes.textFields
+                    }
+                  }}
                 />
               </FormControl>
               <FormControl margin="normal" className={classes.textFields} required>
@@ -128,6 +134,11 @@ const Login = (props) => {
                   aria-label="password"
                   type="password"
                   name="password"
+                  InputProps={{
+                    classes: {
+                      input: classes.textFields
+                    }
+                  }}
                 />
               </FormControl>
               <Button className={classes.submitButton} color="primary" type="submit" variant="contained" size="large">
