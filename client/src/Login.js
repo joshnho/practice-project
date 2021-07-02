@@ -62,7 +62,6 @@ const useStyles = makeStyles(() => ({
     paddingRight: "10%",
     gap: "20px",
   },
-  formTitle: {},
   form: {
     display: "flex",
     flexDirection: "column",
@@ -103,7 +102,7 @@ const Login = (props) => {
       <Grid item xs={false} sm={4} md={5} className={classes.image} />
       <Grid item xs={12} sm={8} md={7} component={Paper} elevation={6}>
         <div className={classes.paper}>
-          <Box container item className={classes.header}>
+          <Box className={classes.header}>
             <Typography className={classes.headerText}>
               Don't have an account?
             </Typography>
@@ -116,11 +115,9 @@ const Login = (props) => {
             </Button>
           </Box>
           <form onSubmit={handleLogin} className={classes.formContainer}>
-            <Typography className={classes.formTitle}>
-              <Box fontSize='h3.fontSize' fontWeight='bold'>
-                Welcome back!
-              </Box>
-            </Typography>
+            <Box fontSize='h3.fontSize' fontWeight='bold'>
+              Welcome back!
+            </Box>
             <Grid className={classes.form}>
               <FormControl
                 margin='normal'
