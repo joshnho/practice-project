@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginTop: theme.spacing(25),
     marginBottom: theme.spacing(25),
-    // marginLeft: theme.spacing(14),
-    // marginRight: theme.spacing(14),
     display: "flex",
     flexDirection: "column",
     gap: "60px",
