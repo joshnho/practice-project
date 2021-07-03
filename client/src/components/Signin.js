@@ -95,9 +95,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Signin = (props) => {
+const Signin = ({ user, location }) => {
   const [hasAccount, setHasAccount] = useState(false);
-  const { user, location } = props;
   const classes = useStyles(theme);
 
   useEffect(() => {
