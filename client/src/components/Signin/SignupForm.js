@@ -35,7 +35,7 @@ const SignupForm = ({ user, register, classes }) => {
 
   return (
       <form onSubmit={handleRegister} className={classes.formContainer}>
-        <Typography variant='h3'>Create an account</Typography>
+        <Typography variant='h3' className={classes.formTitle}>Create an account</Typography>
         <Grid className={classes.form}>
           <FormControl margin='normal' className={classes.textFields} required>
             <TextField

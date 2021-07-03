@@ -25,7 +25,7 @@ const Signin = ({ user, login, classes }) => {
 
   return (
     <form onSubmit={handleLogin} className={classes.formContainer}>
-      <Typography variant='h3'>Welcome back!</Typography>
+      <Typography variant='h3' className={classes.formTitle}>Welcome back!</Typography>
       <Grid className={classes.form}>
         <FormControl margin='normal' className={classes.textFields} required>
           <TextField
