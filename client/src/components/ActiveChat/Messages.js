@@ -1,11 +1,27 @@
 import React from "react";
-import { Box } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import { SenderBubble, OtherUserBubble } from "../ActiveChat";
 import moment from "moment";
 
+const useStyles = makeStyles(() => ({
+  root: {
+    width: "100%",
+    maxHeight: "70vh",
+    overflow: "auto",
+    // Hide scrollbars for chrome
+    "&::-webkit-scrollbar": {
+      display: "none"
+    },
+    // Hide scrollbars IE 10+, Edge 64, Firefox
+    "-ms-overflow-style": "none",
+    "scrollbar-width": "none",
+  },
+}))
+
 const Messages = ({ messages, otherUser, userId }) => {
+  const classes = useStyles()
   return (
-    <Box>
+    <Box className={`${classes.root} messages-container`}>
       {messages.map((message) => {
         const time = moment(message.createdAt).format("h:mm");
 
