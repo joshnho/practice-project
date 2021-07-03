@@ -3,14 +3,18 @@ import { Box, makeStyles } from "@material-ui/core";
 import { SenderBubble, OtherUserBubble } from "../ActiveChat";
 import moment from "moment";
 
-// CSS to hide scrollbar
-import "../../static/css/messages.css"
-
 const useStyles = makeStyles(() => ({
   root: {
     width: "100%",
     maxHeight: "70vh",
     overflow: "auto",
+    // Hide scrollbars for chrome
+    "&::-webkit-scrollbar": {
+      display: "none"
+    },
+    // Hide scrollbars IE 10+, Edge 64, Firefox
+    "-ms-overflow-style": "none",
+    "scrollbar-width": "none",
   },
 }))
 

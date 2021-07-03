@@ -32,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
     gap: "60px",
     width: "50%"
   },
+  "@media screen and (max-width: 600px)": {
+    image: {
+      display: "none",
+    }
+  },
   bubbleIcon: {
     width: "30%",
     alignSelf: "center",
@@ -42,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
     marginTop: theme.spacing(5),
     marginLeft: theme.spacing(5),
@@ -51,12 +56,12 @@ const useStyles = makeStyles((theme) => ({
   },
   headerText: {
     color: theme.palette.secondary.main,
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(5),
   },
   headerButton: {
     backgroundColor: "white",
     fontSize: theme.spacing(2),
-    width: "15em",
+    width: "13em",
     height: "4em",
     color: theme.palette.primary.main,
     boxShadow: "5px 5px 10px rgba(0,0,0,0.3)",
@@ -112,7 +117,7 @@ const Signin = (props) => {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={false} sm={4} md={5} className={classes.image}>
+      <Grid item sm={4} md={5} className={classes.image}>
         <Box className={classes.imageTextContainer}>
           <img
             src={chatBubbleImg}
