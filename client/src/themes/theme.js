@@ -8,6 +8,9 @@ export const theme = createMuiTheme({
     textFields: {
       fontSize: 25
     },
+    formTitle: {
+      fontSize: 34,
+    },
     homeHeader: {
       fontSize: 20,
     },

@@ -76,6 +76,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(14),
     gap: "20px",
   },
+  formTitle: {
+    fontSize: theme.typography.formTitle.fontSize,
+    fontWeight: theme.typography.fontWeight,
+  },
   form: {
     display: "flex",
     flexDirection: "column",
