@@ -10,7 +10,7 @@ import { clearOnLogout } from "../store/index";
 
 const styles = {
   root: {
-    height: "97vh",
+    height: "95vh",
   },
 };
 
@@ -20,29 +20,36 @@ const usePrevious = (value) => {
     ref.current = value;
   }, [value]);
   return ref.current;
-}
-
+};
 const Home = ({ classes, user, fetchConversations, logout }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const prevUser = usePrevious(user);
 
   useEffect(() => {
     if (user?.id !== prevUser?.id) {
-      setIsLoggedIn(true)
-    };
-  }, [prevUser?.id, user?.id])
+      setIsLoggedIn(true);
+    }
+  }, [prevUser?.id, user?.id]);
 
   useEffect(() => {
     fetchConversations();
-  }, [fetchConversations])
+  }, [fetchConversations]);
 
   const handleLogout = async () => {
     await logout(user.id);
   };
   if (!user.id) {
     // If we were previously logged in, redirect to login instead of register
-    if (isLoggedIn) return <Redirect to="/login" />;
-    return <Redirect to="/register" />;
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+          state: {
+            hasAccount: isLoggedIn,
+          },
+        }}
+      />
+    );
   }
   return (
     <>
@@ -50,13 +57,13 @@ const Home = ({ classes, user, fetchConversations, logout }) => {
       <Button className={classes.logout} onClick={handleLogout}>
         Logout
       </Button>
-      <Grid container component="main" className={classes.root}>
+      <Grid container component='main' className={classes.root}>
         <SidebarContainer />
         <ActiveChat />
       </Grid>
     </>
   );
-}
+};
 
 const mapStateToProps = (state) => {
   return {
