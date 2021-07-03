@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
 const Messages = ({ messages, otherUser, userId }) => {
   const classes = useStyles()
   return (
-    <Box className={`${classes.root} messages-container`}>
+    <Box className={`${classes.root}`}>
       {messages.map((message) => {
         const time = moment(message.createdAt).format("h:mm");
 

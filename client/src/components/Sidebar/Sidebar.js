@@ -19,10 +19,8 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Sidebar = (props) => {
+const Sidebar = ({ handleChange, searchTerm, conversations = [] }) => {
   const classes = useStyles();
-  const conversations = props.conversations || [];
-  const { handleChange, searchTerm } = props;
 
   return (
     <Box className={classes.root}>

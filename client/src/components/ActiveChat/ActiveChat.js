@@ -4,17 +4,20 @@ import { Box } from "@material-ui/core";
 import { Input, Header, Messages } from "./index";
 import { connect } from "react-redux";
 import { updateReadStatus } from "../../store/utils/thunkCreators";
+import { theme } from "../../themes/theme";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
+  // ActiveChat component root styling
   root: {
     display: "flex",
     flexGrow: 8,
     flexDirection: "column",
     maxHeight: "100%",
+    marginRight: theme.spacing(2),
   },
   chatContainer: {
-    marginLeft: 41,
-    marginRight: 41,
+    marginLeft: theme.spacing(5),
+    marginRight: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
@@ -23,7 +26,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ActiveChat = ({ user, conversation, updateReadStatus }) => {
-  const classes = useStyles();
+  const classes = useStyles(theme);
 
   useEffect(() => {
     if(conversation){
