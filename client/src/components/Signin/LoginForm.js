@@ -10,8 +10,7 @@ import {
 } from "@material-ui/core";
 import { login } from "../../store/utils/thunkCreators";
 
-const Signin = (props) => {
-  const { user, login, classes } = props;
+const LoginForm = ({ user, login, classes }) => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -83,4 +82,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signin);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { theme } from "../themes/theme";
 import { Grid, Box, Typography, Paper, Button } from "@material-ui/core";
-import Login from "./Signin/LoginForm";
+import LoginForm from "./Signin/LoginForm";
 import SignupForm from "./Signin/SignupForm";
 import bgImg from "../static/images/bg-img.png";
 import chatBubbleImg from "../static/images/bubble.png";
@@ -145,7 +145,7 @@ const Signin = ({ user, location }) => {
             </Button>
           </Box>
           {hasAccount ? (
-            <Login classes={classes} />
+            <LoginForm classes={classes} />
           ) : (
             <SignupForm classes={classes} />
           )}
