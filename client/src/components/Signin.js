@@ -32,11 +32,6 @@ const useStyles = makeStyles((theme) => ({
     gap: "60px",
     width: "50%"
   },
-  "@media screen and (max-width: 600px)": {
-    image: {
-      display: "none",
-    }
-  },
   bubbleIcon: {
     width: "30%",
     alignSelf: "center",
@@ -49,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
     marginTop: theme.spacing(5),
     marginLeft: theme.spacing(5),
     marginRight: theme.spacing(8),
@@ -59,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(5),
   },
   headerButton: {
-    backgroundColor: "white",
+    backgroundColor: theme.palette.secondary.white,
     fontSize: theme.spacing(2),
     width: "13em",
     height: "4em",
@@ -69,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.secondary.white,
     },
+  },
+  headerLink: {
+    display: "none",
   },
   formContainer: {
     display: "flex",
@@ -93,11 +92,34 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(4),
   },
+
+  "@media screen and (max-width: 600px)": {
+    image: {
+      display: "none",
+    },
+    formContainer: {
+      marginTop: theme.spacing(1),
+    },
+    header: {
+      width: "13em",
+    },
+    headerButton: {
+      display: "none",
+    },
+    headerLink: {
+      display: "inline",
+      color: theme.palette.primary.main,
+      cursor: "pointer",
+      textDecoration: "underline",
+    },
+    headerText: {
+      marginRight: theme.spacing(1),
+    },
+  },
 }));
 
-const Signin = (props) => {
+const Signin = ({ user, location }) => {
   const [hasAccount, setHasAccount] = useState(false);
-  const { user, location } = props;
   const classes = useStyles(theme);
 
   useEffect(() => {
@@ -144,6 +166,12 @@ const Signin = (props) => {
             >
               {hasAccount ? "Create an account" : "Login"}
             </Button>
+            <Typography 
+              className={classes.headerLink}
+              onClick={handleClick}
+            >
+              {hasAccount ? "Create an account" : "Login"}
+            </Typography>
           </Box>
           {hasAccount ? (
             <Login classes={classes} />

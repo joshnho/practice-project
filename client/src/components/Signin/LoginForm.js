@@ -10,9 +10,7 @@ import {
 } from "@material-ui/core";
 import { login } from "../../store/utils/thunkCreators";
 
-const Signin = (props) => {
-  const { user, login, classes } = props;
-
+const Signin = ({ user, login, classes }) => {
   const handleLogin = async (event) => {
     event.preventDefault();
     const username = event.target.username.value;

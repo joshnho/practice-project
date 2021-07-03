@@ -1,25 +1,26 @@
 import React from "react";
+import { theme } from "../../themes/theme";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end"
   },
   msgDetails: {
-    fontSize: 11,
-    color: "#BECCE2",
-    fontWeight: "bold",
-    marginBottom: 5
+    fontSize: theme.typography.activeChat.msgDetails,
+    color: theme.palette.activeChat.msgDetails,
+    fontWeight: theme.typography.activeChat.fontWeight,
+    marginBottom: theme.spacing(2)
   },
   text: {
-    fontSize: 14,
+    fontSize: theme.typography.fontSize,
+    fontWeight: theme.typography.fontWeight,
     color: "#91A3C0",
     letterSpacing: -0.2,
-    padding: 8,
-    fontWeight: "bold"
+    padding: theme.spacing(1),
   },
   bubble: {
     background: "#F4F6FA",
@@ -27,9 +28,9 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const SenderBubble = (props) => {
-  const classes = useStyles();
-  const { time, message } = props;
+const SenderBubble = ({ time, message }) => {
+  const classes = useStyles(theme);
+
   return (
     <Box className={classes.root}>
       <Typography className={classes.msgDetails}>{time}</Typography>
