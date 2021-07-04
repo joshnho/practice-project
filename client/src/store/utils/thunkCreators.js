@@ -82,7 +82,7 @@ const sendMessage = (data, body) => {
   });
 };
 
-const readIncomingMessages = (body, userId) => {
+const sendReadStatusToOtherUser = (body, userId) => {
   socket.emit("read-messages", {
     conversationId: body.conversationId,
     otherUserId: body.senderId,
@@ -125,9 +125,9 @@ export const updateReadStatus = (conversation, userId) => async (dispatch) => {
     }
     const lastMsgIdx = conversation.messages.length - 1
     if (conversation.messages[lastMsgIdx].read === false && conversation.messages[lastMsgIdx].senderId === reqBody.senderId) {
-      dispatch(readMessages(conversation.id, userId))
       await axios.patch("/api/messages/unread-messages", reqBody)
-      readIncomingMessages(reqBody, userId)
+      dispatch(readMessages(conversation.id, userId))
+      sendReadStatusToOtherUser(reqBody, userId)
     }
   } catch (error) {
     console.error(error)
