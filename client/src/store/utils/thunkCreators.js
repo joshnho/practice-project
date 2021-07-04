@@ -123,7 +123,7 @@ export const updateReadStatus = (conversation, userId) => async (dispatch) => {
       senderId: conversation.otherUser.id
     }
     const lastMsgIdx = conversation.messages.length - 1
-    if (conversation.messages[lastMsgIdx].read === false) {
+    if (conversation.messages[lastMsgIdx].read === false && conversation.messages[lastMsgIdx].senderId === reqBody.senderId) {
       await axios.patch("/api/messages/unread-messages", reqBody)
       readMessages(reqBody, userId)
     }
