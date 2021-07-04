@@ -46,7 +46,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("read-messages", (data) => {
-    socket.broadcast.emit("read-messages", {
+    socket.to(onlineUsers[data.otherUserId]).emit("read-messages", {
       conversationId: data.conversationId,
       userId: data.userId,
     })
