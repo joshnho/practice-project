@@ -5,8 +5,7 @@ import { fetchUser } from "./store/utils/thunkCreators";
 import Signin from "./components/Signin";
 import { Home, SnackbarError } from "./components";
 
-const Routes = (props) => {
-  const { user, fetchUser } = props;
+const Routes = ({ user, fetchUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [snackBarOpen, setSnackBarOpen] = useState(false);
 
@@ -26,7 +25,7 @@ const Routes = (props) => {
     }
   }, [user.error]);
 
-  if (props.user.isFetchingUser) {
+  if (user.isFetchingUser) {
     return <div>Loading...</div>;
   }
 
