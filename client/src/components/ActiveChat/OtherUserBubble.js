@@ -40,9 +40,10 @@ const OtherUserBubble = ({ text, time, otherUser, conversation, user }) => {
   useEffect(() => {
     socket.emit("read-messages", {
       conversationId: conversation.id,
-      userId: user.id
+      userId: user.id,
+      otherUserId: conversation.otherUser.id
     })
-  }, [user.id, conversation.id])
+  }, [user.id, conversation.id, conversation.otherUser])
   
   return (
     <Box className={classes.root}>
