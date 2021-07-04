@@ -30,7 +30,10 @@ const Messages = ({ userId, conversation, conversation: { messages, otherUser },
   useEffect(() => {
     if (atBottom === true) {
       if (conversation) {
-        updateReadStatus(conversation, userId);
+        const dispatchUpdateReadStatus = async (conversation, userId) => {
+          await updateReadStatus(conversation, userId);
+        };
+        dispatchUpdateReadStatus(conversation, userId);
       };
     };
   }, [updateReadStatus, conversation, atBottom, userId])
