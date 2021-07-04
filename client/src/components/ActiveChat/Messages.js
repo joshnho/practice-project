@@ -30,10 +30,10 @@ const Messages = ({ userId, conversation, conversation: { messages, otherUser },
   useEffect(() => {
     if (atBottom === true) {
       if (conversation) {
-        updateReadStatus(conversation);
+        updateReadStatus(conversation, userId);
       };
     };
-  }, [updateReadStatus, conversation, atBottom])
+  }, [updateReadStatus, conversation, atBottom, userId])
 
   return (
     <Box className={classes.root}>

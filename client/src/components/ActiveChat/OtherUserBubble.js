@@ -37,14 +37,6 @@ const useStyles = makeStyles(theme => ({
 const OtherUserBubble = ({ text, time, otherUser, conversation, user }) => {
   const classes = useStyles(theme);
 
-  useEffect(() => {
-    socket.emit("read-messages", {
-      conversationId: conversation.id,
-      userId: user.id,
-      otherUserId: conversation.otherUser.id
-    })
-  }, [user.id, conversation.id, conversation.otherUser])
-  
   return (
     <Box className={classes.root}>
       <Avatar alt={otherUser.username} src={otherUser.photoUrl} className={classes.avatar}></Avatar>
