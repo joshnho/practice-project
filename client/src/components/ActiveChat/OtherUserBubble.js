@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const OtherUserBubble = ({ text, time, otherUser, conversation, user }) => {
+const OtherUserBubble = ({ text, time, otherUser }) => {
   const classes = useStyles(theme);
 
   return (

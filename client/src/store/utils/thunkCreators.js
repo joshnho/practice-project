@@ -125,8 +125,8 @@ export const updateReadStatus = (conversation, userId) => async (dispatch) => {
     }
     const lastMsgIdx = conversation.messages.length - 1
     if (conversation.messages[lastMsgIdx].read === false && conversation.messages[lastMsgIdx].senderId === reqBody.senderId) {
-      await axios.patch("/api/messages/unread-messages", reqBody)
       dispatch(readMessages(conversation.id, userId))
+      await axios.patch("/api/messages/unread-messages", reqBody)
       sendReadStatusToOtherUser(reqBody, userId)
     }
   } catch (error) {
