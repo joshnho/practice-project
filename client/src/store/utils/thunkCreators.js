@@ -5,6 +5,7 @@ import {
   addConversation,
   setNewMessage,
   setSearchedUsers,
+  readMessages,
 } from "../conversations";
 import { gotUser, setFetchingStatus } from "../user";
 
@@ -81,7 +82,7 @@ const sendMessage = (data, body) => {
   });
 };
 
-const readMessages = (body, userId) => {
+const readIncomingMessages = (body, userId) => {
   socket.emit("read-messages", {
     conversationId: body.conversationId,
     otherUserId: body.senderId,
@@ -124,8 +125,9 @@ export const updateReadStatus = (conversation, userId) => async (dispatch) => {
     }
     const lastMsgIdx = conversation.messages.length - 1
     if (conversation.messages[lastMsgIdx].read === false && conversation.messages[lastMsgIdx].senderId === reqBody.senderId) {
+      dispatch(readMessages(conversation.id, userId))
       await axios.patch("/api/messages/unread-messages", reqBody)
-      readMessages(reqBody, userId)
+      readIncomingMessages(reqBody, userId)
     }
   } catch (error) {
     console.error(error)
