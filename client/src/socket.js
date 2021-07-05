@@ -25,6 +25,9 @@ socket.on("connect", () => {
   socket.on("read-messages", (data) => {
     store.dispatch(readMessages(data.conversationId, data.userId))
   })
+  socket.on("disconnect", (reason) => {
+    console.log("User has disconnected")
+  });
 });
 
 export default socket;

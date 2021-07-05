@@ -49,14 +49,14 @@ io.on("connection", (socket) => {
     socket.to(onlineUsers[data.otherUserId]).emit("read-messages", {
       conversationId: data.conversationId,
       userId: data.userId,
-    })
-  })
+    });
+  });
 
   socket.on("logout", (id) => {
     if (!!onlineUsers[id]) {
-      delete onlineUsers;
+      delete onlineUsers[id];
       socket.broadcast.emit("remove-offline-user", id);
-    }
+    };
   });
 });
 
