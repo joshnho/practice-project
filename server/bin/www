@@ -58,6 +58,16 @@ io.on("connection", (socket) => {
       socket.broadcast.emit("remove-offline-user", id);
     };
   });
+
+  socket.on("disconnect", () => {
+    for (const id in onlineUsers) {
+      const idToInt = parseInt(id, 10)
+      if (onlineUsers[idToInt] === socket.id) {
+        socket.broadcast.emit("remove-offline-user", idToInt)
+        delete onlineUsers[id]
+      };
+    };
+  });
 });
 
 sessionStore
