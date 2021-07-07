@@ -7,7 +7,9 @@ import {
   readMessages
 } from "./store/conversations";
 
-const socket = io(window.location.origin);
+const socket = io(window.location.origin, {
+  autoConnect: false,
+});
 
 socket.on("connect", () => {
   console.log("connected to server");
@@ -25,8 +27,8 @@ socket.on("connect", () => {
   socket.on("read-messages", (data) => {
     store.dispatch(readMessages(data.conversationId, data.userId))
   })
-  socket.on("disconnect", (reason) => {
-    console.log("User has disconnected")
+  socket.on("disconnect", () => {
+    console.log("User has disconnected");
   });
 });
 

@@ -57,6 +57,7 @@ io.on("connection", (socket) => {
       delete onlineUsers[id];
       socket.broadcast.emit("remove-offline-user", id);
     };
+    socket.disconnect();
   });
 
   socket.on("disconnect", () => {

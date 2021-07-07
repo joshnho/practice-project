@@ -7,6 +7,7 @@ import { SidebarContainer } from "./Sidebar";
 import { ActiveChat } from "./ActiveChat";
 import { logout, fetchConversations } from "../store/utils/thunkCreators";
 import { clearOnLogout } from "../store/index";
+import socket from "../socket";
 
 const styles = {
   root: {
@@ -34,6 +35,12 @@ const Home = ({ classes, user, fetchConversations, logout }) => {
   useEffect(() => {
     fetchConversations();
   }, [fetchConversations]);
+
+  useEffect(() => {
+    if (user.id) {
+      socket.connect();
+    }
+  }, [user])
 
   const handleLogout = async () => {
     await logout(user.id);
