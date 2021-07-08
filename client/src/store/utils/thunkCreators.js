@@ -5,6 +5,7 @@ import {
   addConversation,
   setNewMessage,
   setSearchedUsers,
+  readMessages,
 } from "../conversations";
 import { gotUser, setFetchingStatus } from "../user";
 
@@ -29,6 +30,7 @@ export const register = (credentials) => async (dispatch) => {
   try {
     const { data } = await axios.post("/auth/register", credentials);
     dispatch(gotUser(data));
+    socket.connect();
     socket.emit("go-online", data.id);
   } catch (error) {
     console.error(error);
@@ -40,6 +42,7 @@ export const login = (credentials) => async (dispatch) => {
   try {
     const { data } = await axios.post("/auth/login", credentials);
     dispatch(gotUser(data));
+    socket.connect();
     socket.emit("go-online", data.id);
   } catch (error) {
     console.error(error);
@@ -81,6 +84,14 @@ const sendMessage = (data, body) => {
   });
 };
 
+const sendReadStatusToOtherUser = (body, userId) => {
+  socket.emit("read-messages", {
+    conversationId: body.conversationId,
+    otherUserId: body.senderId,
+    userId
+  })
+}
+
 // message format to send: {recipientId, text, conversationId}
 // conversationId will be set to null if its a brand new conversation
 export const postMessage = (body) => async (dispatch) => {
@@ -108,13 +119,18 @@ export const searchUsers = (searchTerm) => async (dispatch) => {
   }
 };
 
-export const updateReadStatus = (body) => async (dispatch) => {
+export const updateReadStatus = (conversation, userId) => async (dispatch) => {
   try {
     const reqBody = {
-      conversationId: body.id,
-      senderId: body.otherUser.id
+      conversationId: conversation.id,
+      senderId: conversation.otherUser.id
     }
-    await axios.patch("/api/messages/unread-messages", reqBody)
+    const lastMsgIdx = conversation.messages.length - 1
+    if (conversation.messages[lastMsgIdx].read === false && conversation.messages[lastMsgIdx].senderId === reqBody.senderId) {
+      dispatch(readMessages(conversation.id, userId))
+      await axios.patch("/api/messages/unread-messages", reqBody)
+      sendReadStatusToOtherUser(reqBody, userId)
+    }
   } catch (error) {
     console.error(error)
   }

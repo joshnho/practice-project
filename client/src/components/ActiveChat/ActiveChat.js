@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import { Input, Header, Messages } from "./index";
 import { connect } from "react-redux";
-import { updateReadStatus } from "../../store/utils/thunkCreators";
 import { theme } from "../../themes/theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,12 +27,6 @@ const useStyles = makeStyles((theme) => ({
 const ActiveChat = ({ user, conversation, updateReadStatus }) => {
   const classes = useStyles(theme);
 
-  useEffect(() => {
-    if(conversation){
-      updateReadStatus(conversation);
-    }
-  }, [updateReadStatus, conversation])
-
   return (
     <Box className={classes.root}>
       {conversation?.otherUser && (
@@ -44,8 +37,7 @@ const ActiveChat = ({ user, conversation, updateReadStatus }) => {
           />
           <Box className={classes.chatContainer}>
             <Messages
-              messages={conversation.messages}
-              otherUser={conversation.otherUser}
+              conversation={conversation}
               userId={user.id}
             />
             <Input
@@ -71,11 +63,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateReadStatus: (message) => {
-      dispatch(updateReadStatus(message));
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ActiveChat);
+export default connect(mapStateToProps, null)(ActiveChat);
