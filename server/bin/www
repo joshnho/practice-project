@@ -73,7 +73,6 @@ io.on("connection", (socket) => {
   socket.on("logout", (id) => {
     removeCurrentSocket(id, socket.id)
     if (!onlineUsers[id]) socket.broadcast.emit("remove-offline-user", id);
-    socket.disconnect();
   });
 
   socket.on("disconnect", () => {
