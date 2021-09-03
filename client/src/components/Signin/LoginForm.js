@@ -27,7 +27,7 @@ const Signin = ({ user, login, classes }) => {
     <form onSubmit={handleLogin} className={classes.formContainer}>
       <Typography variant='h3' className={classes.formTitle}>Welcome back!</Typography>
       <Grid className={classes.form}>
-        <FormControl margin='normal' className={classes.textFields} required>
+        <FormControl margin='normal' required>
           <TextField
             aria-label='username'
             label='Username'
@@ -40,7 +40,7 @@ const Signin = ({ user, login, classes }) => {
             }}
           />
         </FormControl>
-        <FormControl margin='normal' className={classes.textFields} required>
+        <FormControl margin='normal' required>
           <TextField
             label='Password'
             aria-label='password'

@@ -72,9 +72,11 @@ const useStyles = makeStyles((theme) => ({
   formContainer: {
     display: "flex",
     flexDirection: "column",
-    paddingLeft: theme.spacing(10),
+    // paddingLeft: theme.spacing(10),
     marginTop: theme.spacing(14),
     gap: "20px",
+    alignSelf: "center",
+    width: "80%",
   },
   formTitle: {
     fontSize: theme.typography.formTitle.fontSize,
@@ -95,11 +97,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.button.fontSize,
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(4),
+    alignSelf: "center"
   },
 
   "@media screen and (max-width: 600px)": {
     image: {
       display: "none",
+    },
+    formTitle: {
+      alignSelf: "center"
     },
     formContainer: {
       marginTop: theme.spacing(1),

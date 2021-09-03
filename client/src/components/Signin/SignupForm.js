@@ -37,7 +37,7 @@ const SignupForm = ({ user, register, classes }) => {
       <form onSubmit={handleRegister} className={classes.formContainer}>
         <Typography variant='h3' className={classes.formTitle}>Create an account</Typography>
         <Grid className={classes.form}>
-          <FormControl margin='normal' className={classes.textFields} required>
+          <FormControl margin='normal' required>
             <TextField
               aria-label='username'
               label='Username'
@@ -51,7 +51,7 @@ const SignupForm = ({ user, register, classes }) => {
               required
             />
           </FormControl>
-          <FormControl margin='normal' className={classes.textFields} required>
+          <FormControl margin='normal' required>
             <TextField
               label='E-mail address'
               aria-label='e-mail address'
@@ -68,7 +68,6 @@ const SignupForm = ({ user, register, classes }) => {
           <FormControl
             margin='normal'
             error={!!formErrorMessage.confirmPassword}
-            className={classes.textFields}
             required
           >
             <TextField
@@ -89,7 +88,6 @@ const SignupForm = ({ user, register, classes }) => {
           <FormControl
             margin='normal'
             error={!!formErrorMessage.confirmPassword}
-            className={classes.textFields}
             required
           >
             <TextField
