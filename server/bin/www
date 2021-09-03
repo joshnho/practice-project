@@ -33,7 +33,7 @@ const io = require("socket.io")(server);
 
 
 const removeCurrentSocket = (userId, socketId) => {
-  if (onlineUsers[userId].length > 1) {
+  if (onlineUsers[userId]?.length > 1) {
     const socketIdx = onlineUsers[userId].indexOf(socketId);
     onlineUsers[userId].splice(socketIdx, 1);
   } else {
@@ -53,7 +53,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("new-message", ({ recipientId, message, sender }) => {
-    onlineUsers[recipientId].forEach(socketId => {
+    onlineUsers[recipientId]?.forEach(socketId => {
       socket.to(socketId).emit("new-message", {
         message,
         sender,
@@ -62,7 +62,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("read-messages", ({ otherUserId, conversationId, userId }) => {
-    onlineUsers[otherUserId].forEach(socketId => {
+    onlineUsers[otherUserId]?.forEach(socketId => {
       socket.to(socketId).emit("read-messages", {
         conversationId,
         userId,
@@ -73,13 +73,12 @@ io.on("connection", (socket) => {
   socket.on("logout", (id) => {
     removeCurrentSocket(id, socket.id)
     if (!onlineUsers[id]) socket.broadcast.emit("remove-offline-user", id);
-    socket.disconnect();
   });
 
   socket.on("disconnect", () => {
     for (const id in onlineUsers) {
       const idToInt = parseInt(id, 10)
-      if (onlineUsers[idToInt].includes(socket.id)) {
+      if (onlineUsers[idToInt]?.includes(socket.id)) {
         removeCurrentSocket(idToInt, socket.id);
         if (!onlineUsers[idToInt]) socket.broadcast.emit("remove-offline-user", id);
       };
