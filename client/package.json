@@ -30,7 +30,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "https://practice-chat-application.herokuapp.com/",
   "browserslist": {
     "production": [
       ">0.2%",
