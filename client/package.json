@@ -29,7 +29,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "postgres://atpfevkajkvfoh:3522e6206148eab968ca4686de73a5150e3b78f24320f851a5e214bd9fe7042e@ec2-44-206-197-71.compute-1.amazonaws.com:5432/d5vcitit84bp8f",
+  "proxy": "https://practice-chat-application.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",
