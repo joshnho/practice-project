@@ -10,8 +10,7 @@ import {
 import { gotUser, setFetchingStatus } from '../user';
 
 const request = axios.create({
-  baseURL:
-    'https://cors-anywhere.herokuapp.com/https://practice-chat-application.herokuapp.com/',
+  baseURL: 'https://practice-chat-application.herokuapp.com/',
 });
 
 // USER THUNK CREATORS

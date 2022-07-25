@@ -8,10 +8,17 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./db');
 const { User } = require('./db/models');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+// cors config
+app.use(
+  cors({
+    origin: 'https://zingy-beignet-2f1684.netlify.app',
+    methods: ['GET', 'POST', 'DELETE', 'PATCH'],
+  })
+);
 
 // create store for sessions to persist in database
 const sessionStore = new SequelizeStore({ db });
-
 const { json, urlencoded } = express;
 
 const app = express();
