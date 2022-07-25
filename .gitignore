@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules/
+server/node_modules/
 
 
 # production
@@ -18,4 +19,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.env
+server/.env
