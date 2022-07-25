@@ -12,7 +12,7 @@ const cors = require('cors');
 // cors config
 app.use(
   cors({
-    origin: 'https://zingy-beignet-2f1684.netlify.app/',
+    origin: 'https://zingy-beignet-2f1684.netlify.app',
     methods: ['GET', 'POST', 'DELETE', 'PATCH'],
   })
 );
