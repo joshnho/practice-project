@@ -20,17 +20,6 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(express.static(join(__dirname, 'public')));
 app.use(cookieParser());
-app.use((req, res, next) => {
-  res.header(
-    'Access-Control-Allow-Origin',
-    'https://zingy-beignet-2f1684.netlify.app'
-  );
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
 
 app.use(function (req, res, next) {
   const token = req.cookies.token;
@@ -54,6 +43,17 @@ app.use(function (req, res, next) {
 // require api routes here after I create them
 app.use('/auth', require('./routes/auth'));
 app.use('/api', require('./routes/api'));
+
+/**
+ * Serve static assets if in production
+ */
+if (process.env.NODE_ENV === 'production') {
+  // set static folder
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

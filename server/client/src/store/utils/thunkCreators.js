@@ -9,16 +9,16 @@ import {
 } from '../conversations';
 import { gotUser, setFetchingStatus } from '../user';
 
-const request = axios.create({
-  baseURL: 'https://practice-chat-application.herokuapp.com/',
-});
+// const axios = axios.create({
+//   baseURL: 'https://practice-chat-application.herokuapp.com/',
+// });
 
 // USER THUNK CREATORS
 
 export const fetchUser = () => async (dispatch) => {
   dispatch(setFetchingStatus(true));
   try {
-    const { data } = await request.get('/auth/user');
+    const { data } = await axios.get('/auth/user');
     dispatch(gotUser(data));
     if (data.id) {
       socket.connect();
@@ -33,7 +33,7 @@ export const fetchUser = () => async (dispatch) => {
 
 export const register = (credentials) => async (dispatch) => {
   try {
-    const { data } = await request.post('/auth/register', credentials);
+    const { data } = await axios.post('/auth/register', credentials);
     dispatch(gotUser(data));
     socket.connect();
     socket.emit('go-online', data.id);
@@ -45,7 +45,7 @@ export const register = (credentials) => async (dispatch) => {
 
 export const login = (credentials) => async (dispatch) => {
   try {
-    const { data } = await request.post('/auth/login', credentials);
+    const { data } = await axios.post('/auth/login', credentials);
     dispatch(gotUser(data));
     socket.connect();
     socket.emit('go-online', data.id);
@@ -57,7 +57,7 @@ export const login = (credentials) => async (dispatch) => {
 
 export const logout = (id) => async (dispatch) => {
   try {
-    await request.delete('/auth/logout');
+    await axios.delete('/auth/logout');
     dispatch(gotUser({}));
     socket.emit('logout', id);
     socket.disconnect();
@@ -70,7 +70,7 @@ export const logout = (id) => async (dispatch) => {
 
 export const fetchConversations = () => async (dispatch) => {
   try {
-    const { data } = await request.get('/api/conversations');
+    const { data } = await axios.get('/api/conversations');
     dispatch(gotConversations(data));
   } catch (error) {
     console.error(error);
@@ -78,7 +78,7 @@ export const fetchConversations = () => async (dispatch) => {
 };
 
 const saveMessage = async (body) => {
-  const { data } = await request.post('/api/messages', body);
+  const { data } = await axios.post('/api/messages', body);
   return data;
 };
 
@@ -118,7 +118,7 @@ export const postMessage = (body) => async (dispatch) => {
 
 export const searchUsers = (searchTerm) => async (dispatch) => {
   try {
-    const { data } = await request.get(`/api/users/${searchTerm}`);
+    const { data } = await axios.get(`/api/users/${searchTerm}`);
     dispatch(setSearchedUsers(data));
   } catch (error) {
     console.error(error);
@@ -137,7 +137,7 @@ export const updateReadStatus = (conversation, userId) => async (dispatch) => {
       conversation.messages[lastMsgIdx].senderId === reqBody.senderId
     ) {
       dispatch(readMessages(conversation.id, userId));
-      await request.patch('/api/messages/unread-messages', reqBody);
+      await axios.patch('/api/messages/unread-messages', reqBody);
       sendReadStatusToOtherUser(reqBody, userId);
     }
   } catch (error) {
