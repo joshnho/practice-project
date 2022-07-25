@@ -7,7 +7,7 @@ import {
   readMessages,
 } from './store/conversations';
 
-const socket = io('https://zingy-beignet-2f1684.netlify.app/', {
+const socket = io(window.location.origin, {
   autoConnect: false,
 });
 
